@@ -21,10 +21,22 @@ db.object = jsonDataSource;
 db._.mixin(_db);
 
 router.route('/presentations/:offset/:pagesize')
-  .get(function(req, res) {
+  .get(function (req, res) {
     res.json({
       total: db('presentations').size(),
       presentations: db('presentations').chunk(req.params.pagesize)[req.params.offset] || []
+    });
+  });
+
+router.route('/presentations')
+  .get(function (req, res) {
+    var query = req.query.q;
+    var querySet = db('presentations').filter(function (presentation) {
+      return _.startsWith(presentation.title, query);
+    });
+    res.json({
+      total: querySet ? querySet.length : 0,
+      presentations: querySet || []
     });
   });
 
