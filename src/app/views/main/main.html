@@ -1,7 +1,23 @@
-<div layout="vertical" layout-fill>
+<div layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>
+        <span>Prezi-Presentio</span>
+      </h2>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <div layout="row" class="base-container">
+    <md-input-container layout-fill md-no-float class="md-block">
+      <md-icon>search</md-icon>
+      <input ng-model="user.phone" type="text" placeholder="{{ viewModel.searchPlaceholder }}">
+    </md-input-container>
+    <div layout="row" layout-xs="column">
+      <ul>
+        <li ng-repeat="presentation in viewModel.presentations">
 
-  <md-content>
-    {{ viewModel.scaffoldDone }}
-  </md-content>
-
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

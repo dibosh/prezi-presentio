@@ -8,6 +8,6 @@
   /** @ngInject */
   function MainController() {
     var vm = this;
-    vm.scaffoldDone = 'Successfully scaffolded!';
+    vm.searchPlaceholder = 'Search presentations by title';
   }
 })();
