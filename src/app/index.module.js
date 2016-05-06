@@ -2,7 +2,7 @@
   'use strict';
 
   angular.
-    module('underscore', []);
+    module('lodash', []);
 
   angular.
     module('moment', []);
@@ -30,7 +30,9 @@
       'ngMessages',
       'ui.router',
       'ngMaterial',
-      'toastr'
+      'toastr',
+      'lodash',
+      'moment'
     ]);
 
 })();

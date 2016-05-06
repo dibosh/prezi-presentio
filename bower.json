@@ -1,5 +1,5 @@
 {
-  "name": "preziPresentio",
+  "name": "prezi-presentio",
   "version": "0.0.0",
   "dependencies": {
     "angular-animate": "~1.4.2",
@@ -12,10 +12,10 @@
     "angular-toastr": "~1.5.0",
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
-    "angular": "~1.4.2"
+    "angular": "~1.4.2",
+    "lodash": "^4.11.2"
   },
   "resolutions": {
-    "jquery": "~2.1.4",
     "angular": "~1.4.2"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "preziPresentio",
+  "name": "prezi-presentio",
   "version": "0.0.0",
   "dependencies": {
     "body-parser": "^1.15.0",

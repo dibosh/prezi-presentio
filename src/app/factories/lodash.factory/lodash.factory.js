@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   angular.
-    module('underscore').factory('_', LodashFactory);
+    module('lodash').factory('_', LodashFactory);
 
   LodashFactory.$inject = ['$window'];
 
