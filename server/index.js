@@ -20,7 +20,7 @@ db.object = jsonDataSource;
 // Add underscore-db methods to db
 db._.mixin(_db);
 
-router.route('/presentations/:offset/:pagesize')
+router.route('/presentation/all/:offset/:pagesize')
   .get(function (req, res) {
     res.json({
       total: db('presentations').size(),
@@ -28,7 +28,7 @@ router.route('/presentations/:offset/:pagesize')
     });
   });
 
-router.route('/presentations')
+router.route('/presentation/all')
   .get(function (req, res) {
     var query = req.query.q;
     var querySet = db('presentations').filter(function (presentation) {
@@ -39,6 +39,13 @@ router.route('/presentations')
       presentations: querySet || []
     });
   });
+
+// CORS Support
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use('/api', router);
 
