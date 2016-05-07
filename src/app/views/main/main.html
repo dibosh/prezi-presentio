@@ -1,7 +1,8 @@
 <div class="wrap" layout="column" layout-fill>
   <!--Header-->
   <md-toolbar>
-    <div class="md-toolbar-tools">
+    <div class="md-toolbar-tools" layout="row" layout-align="start center">
+      <img class="branding-logo" src="app/assets/images/logo.png" alt=""/>
       <h2>
         <span>Prezi-Presentio</span>
       </h2>
@@ -16,20 +17,24 @@
   <!--Main view-->
   <div class="base-container" ng-if="!viewModel.shouldShowErrorView">
     <!--Search bar-->
-    <md-input-container ng-if="!viewModel.showSearchedByText" md-no-float class="md-block">
-      <md-icon>search</md-icon>
-      <input ng-model="viewModel.query"
+    <div class="search-box" ng-if="!viewModel.showSearchedByText" layout="row" layout-align="start center">
+      <md-icon flex="none" flex-order="1">search</md-icon>
+      <input flex="grow" flex-order="1" class="search-input" ng-model="viewModel.query"
              on-enter-press="viewModel.searchByTitle()"
              type="text"
              placeholder="{{ viewModel.searchPlaceholder }}">
-    </md-input-container>
-    <p ng-if="viewModel.showSearchedByText">
-      Showing {{ viewModel.presentationTiles.length }} results for <strong><q>{{viewModel.query}}</q></strong>
-      <span flex></span>
+    </div>
+    <div ng-if="viewModel.showSearchedByText" layout="row" layout-align="start center">
+      <p ng-if="viewModel.presentationTiles.length > 0">
+        Showing {{ viewModel.presentationTiles.length }} results for <strong><q>{{viewModel.query}}</q></strong>.
+      </p>
+      <p ng-if="viewModel.presentationTiles.length === 0">
+        Sorry, nothing found for <strong><q>{{viewModel.query}}</q></strong>. Try another search.
+      </p>
       <md-button class="md-icon-button md-primary" ng-click="viewModel.hideSearchView()">
         <md-icon class="md-icon-right">clear</md-icon>
       </md-button>
-    </p>
+    </div>
 
     <!--Content view-->
     <md-content layout-padding>
@@ -39,12 +44,12 @@
 
       <md-grid-list
         ng-if="!viewModel.shouldShowProgressView"
-        md-cols="10" md-cols-xs="2" md-cols-sm="6" md-cols-md="8"
-        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-cols="10" md-cols-xs="2" md-cols-sm="4" md-cols-md="8"
+        md-row-height="1:1"
         md-gutter="16px">
         <md-grid-tile ng-repeat="tile in viewModel.presentationTiles track by $index"
                       md-colspan="{{tile.span.default}}"
-                      md-rowspan="{{tile.span.default}}">
+                      md-rowspan="{{tile.span.default}}" ng-cloak>
           <img class="tile-image" ng-src="{{tile.thumbnail}}" alt=""/>
           <md-grid-tile-footer>
             <h3 class="tile-title">{{tile.title}}</h3>

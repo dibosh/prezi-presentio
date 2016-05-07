@@ -11,11 +11,44 @@ $color-background: #ECEFF1;
   text-align: center;
 }
 
+.md-toolbar-tools {
+  .branding-logo {
+    width: 30px;
+    margin-right: 20px;
+  }
+
+  h2{
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+  }
+}
+
+.custom-card {
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(black, 0.07);
+}
+
 .base-container {
   padding: 50px 0;
   margin: 0 auto;
   width: 80%;
   overflow: auto;
+
+  .search-box {
+    @extend .custom-card;
+    background: white;
+    padding: 10px 20px;
+    margin: 0 8px;
+
+    .search-input {
+      padding-left: 5px;
+      border: none;
+      outline: none;
+      &:hover {
+        outline: none;
+      }
+    }
+  }
 
   // Overrides
   md-content {
@@ -27,12 +60,11 @@ $color-background: #ECEFF1;
   }
 
   figure {
+    @extend .custom-card;
     background: white;
     box-sizing: border-box;
     padding: 10px;
     overflow: hidden;
-    border-radius: 2px;
-    box-shadow: 0 1px 2px rgba(black, 0.07);
     cursor: pointer;
 
     .tile-image {
