@@ -53,6 +53,7 @@ html {
 body {
   line-height: 1.62;
   font-size: 1.4rem;
+  overflow: hidden;
 
   p {
     max-width: 75ch;
@@ -60,6 +61,31 @@ body {
 
   h1 {
     font-weight: 300;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .md-toolbar-tools {
+    .branding-logo {
+      width: 30px;
+      margin-right: 20px;
+    }
+
+    h2{
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+    }
+  }
+
+  .full-page-center-aligned-container {
+    height: 100%;
+    text-align: center;
   }
 }
 

@@ -3,11 +3,12 @@
 
   angular
     .module('preziPresentio')
-    .controller('MainController', MainController);
+    .controller('SearchResultViewController', SearchResultViewController);
 
   /** @ngInject */
-  function MainController(PresentationService, _, $log, $state) {
+  function SearchResultViewController(PresentationService, _, $stateParams, $log, $state) {
     var vm = this;
+    vm.query = $stateParams.query;
 
     function _setupPresentationTiles(presentations) {
       vm.presentationTiles = _.map(presentations, function (presentation) {
@@ -19,33 +20,31 @@
     }
 
     var onSuccess = function (response) {
+      vm.shouldShowErrorView = false;
       vm.shouldShowProgressView = false;
+      vm.showSearchedByText = true;
       _setupPresentationTiles(response.presentations);
     };
 
     var onFailure = function (response) {
       vm.shouldShowProgressView = false;
       vm.errorMessage = 'Something bad happened. Please refresh.';
+      vm.shouldShowErrorView = true;
       $log.debug(response);
     };
 
     function _init_() {
-      vm.query = '';
-      vm.errorMessage = '';
       vm.shouldShowProgressView = true;
-      vm.searchPlaceholder = 'Search all presentations';
-      vm.currentOffset = 0;
-      vm.pageSize = 10;
-
-      PresentationService.getPresentations(vm.currentOffset, vm.pageSize)
+      vm.showSearchedByText = false;
+      PresentationService.getMatchedPresentations(vm.query)
         .success(onSuccess)
         .error(onFailure);
     }
 
-    vm.searchByTitle = function () {
-      $state.go('search', {query: vm.query});
-    };
-
     _init_();
+
+    vm.close = function () {
+      $state.go('home'); // Go to parent state
+    };
   }
 })();

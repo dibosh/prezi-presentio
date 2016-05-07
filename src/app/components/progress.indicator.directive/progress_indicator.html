@@ -1,0 +1,7 @@
+<div layout="column" layout-align="center center" ng-class="{'show': shouldIndicateProgress, 'hide': !shouldIndicateProgress}"
+     class="full-page-center-aligned-container">
+  <div layout="row" layout-align="space-around">
+    <md-progress-circular md-mode="indeterminate" md-diameter="96"></md-progress-circular>
+  </div>
+  <p>{{ optionalMessage || 'Please wait for the awesomeness!'}}</p>
+</div>

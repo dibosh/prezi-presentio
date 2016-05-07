@@ -1,6 +1,8 @@
-<div layout="column" layout-align="center center" class="full-page-center-aligned-container">
+<div layout="column" layout-align="center center"
+     ng-class="{'show': errorMessage.length > 0, 'hide': errorMessage.length === 0}"
+     class="full-page-center-aligned-container">
   <h1>
-    {{ viewModel.errorMessage }}
+    {{ errorMessage }}
   </h1>
   <p class="catch-the-culprit">
     If it still persists, please catch the culprit behind all this, before he runs
