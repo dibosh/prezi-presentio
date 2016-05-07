@@ -16,9 +16,9 @@
     toastrConfig.positionClass = 'toast-top-right';
 
     $mdThemingProvider.theme('default')
-      .primaryPalette('indigo')
+      .primaryPalette('blue-grey')
       .accentPalette('light-blue')
-      .warnPalette('orange');
+      .warnPalette('red');
   }
 
 })();

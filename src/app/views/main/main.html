@@ -1,4 +1,5 @@
-<div layout="column" layout-fill>
+<div class="wrap" layout="column" layout-fill>
+  <!--Header-->
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>
@@ -7,17 +8,54 @@
       <span flex></span>
     </div>
   </md-toolbar>
-  <div layout="row" class="base-container">
-    <md-input-container layout-fill md-no-float class="md-block">
-      <md-icon>search</md-icon>
-      <input ng-model="user.phone" type="text" placeholder="{{ viewModel.searchPlaceholder }}">
-    </md-input-container>
-    <div layout="row" layout-xs="column">
-      <ul>
-        <li ng-repeat="presentation in viewModel.presentations">
 
-        </li>
-      </ul>
-    </div>
+  <!--Error view-->
+  <div ng-include="viewModel.errorViewTemplateURL"
+       ng-if="viewModel.shouldShowErrorView" style="height: 100%"></div>
+
+  <!--Main view-->
+  <div class="base-container" ng-if="!viewModel.shouldShowErrorView">
+    <!--Search bar-->
+    <md-input-container ng-if="!viewModel.showSearchedByText" md-no-float class="md-block">
+      <md-icon>search</md-icon>
+      <input ng-model="viewModel.query"
+             on-enter-press="viewModel.searchByTitle()"
+             type="text"
+             placeholder="{{ viewModel.searchPlaceholder }}">
+    </md-input-container>
+    <p ng-if="viewModel.showSearchedByText">
+      Showing {{ viewModel.presentationTiles.length }} results for <strong><q>{{viewModel.query}}</q></strong>
+      <span flex></span>
+      <md-button class="md-icon-button md-primary" ng-click="viewModel.hideSearchView()">
+        <md-icon class="md-icon-right">clear</md-icon>
+      </md-button>
+    </p>
+
+    <!--Content view-->
+    <md-content layout-padding>
+      <!--Progress view-->
+      <div ng-if="viewModel.shouldShowProgressView"
+           ng-include="viewModel.progressViewTemplateURL" style="height: 100%"></div>
+
+      <md-grid-list
+        ng-if="!viewModel.shouldShowProgressView"
+        md-cols="10" md-cols-xs="2" md-cols-sm="6" md-cols-md="8"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter="16px">
+        <md-grid-tile ng-repeat="tile in viewModel.presentationTiles track by $index"
+                      md-colspan="{{tile.span.default}}"
+                      md-rowspan="{{tile.span.default}}">
+          <img class="tile-image" ng-src="{{tile.thumbnail}}" alt=""/>
+          <md-grid-tile-footer>
+            <h3 class="tile-title">{{tile.title}}</h3>
+            <p class="creator-info">
+              Created with <md-icon style="color: red">favorite</md-icon> by
+              <br/>
+              <a target="_blank" ng-href="{{tile.creator.profileUrl}}">{{ tile.creator.name }}</a>
+            </p>
+          </md-grid-tile-footer>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-content>
   </div>
 </div>
