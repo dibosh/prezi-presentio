@@ -32,7 +32,7 @@ router.route('/presentation/all')
   .get(function (req, res) {
     var query = req.query.q;
     var querySet = db('presentations').filter(function (presentation) {
-      return _.startsWith(presentation.title.toLowerCase(), query.toLowerCase());
+      return presentation.title.toLowerCase().includes(query.toLowerCase());
     });
     res.json({
       total: querySet ? querySet.length : 0,
