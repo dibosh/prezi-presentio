@@ -14,8 +14,8 @@
     </div>
 
     <!--Filter view-->
-    <div style="margin-top=10px" layout="row" layout-padding layout-align="start center">
-      <md-input-container class="md-block" flex="20">
+    <div style="margin-top: 20px" layout="row" layout-xs="column" layout-padding layout-align-gt-sm="start center">
+      <md-input-container class="md-block" flex-gt-sm="20" flex="100">
         <label>Sort by creation date</label>
         <md-select ng-model="viewModel.orderByOption"
                    md-on-close="viewModel.orderPresentationsBy(viewModel.orderByOption)">
@@ -24,8 +24,7 @@
           </md-option>
         </md-select>
       </md-input-container>
-      <span flex></span>
-      <p class="pagination-panel" layout="row" layout-align="end center">
+      <div class="pagination-panel" layout="row" layout-align="center center" layout-align-gt-sm="end center" flex-gt-sm="80" flex="100">
         <md-button class="md-icon-button md-primary" ng-disabled="viewModel.currentOffset === 0"
                    ng-click="viewModel.fetchPrevPage()">
           <md-icon>chevron_left</md-icon>
@@ -37,7 +36,7 @@
         </md-button>
 
         Showing {{ viewModel.visiblePagination.lower }}-{{ viewModel.visiblePagination.upper }} of {{ viewModel.totalPresentations }} presentations
-      </p>
+      </div>
     </div>
 
     <!--Content view-->

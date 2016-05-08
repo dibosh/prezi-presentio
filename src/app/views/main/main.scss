@@ -4,8 +4,7 @@ $color-background: #ECEFF1;
   background: $color-background;
   position: relative;
   top: 64px;
-  height: calc(100% - 64px);
-  overflow: hidden;
+  height: calc(100vh - 64px);
   padding: 20px 0;
 }
 
@@ -18,7 +17,7 @@ $color-background: #ECEFF1;
   padding: 20px 0;
   margin: 0 auto;
   width: 80%;
-  overflow: hidden;
+  overflow: auto;
 
   .content-view {
     height: 80vh;
