@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var _ = require('lodash')
-var _db = require('underscore-db')
+var _ = require('lodash');
+var _db = require('underscore-db');
 var low = require('lowdb');
 var jsonDataSource = require('./datasource/prezis.json');
 

@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function PresentationService($http) {
-    var BASE_URL = 'http://localhost:8080/api/presentation/all';
+    var BASE_URL = 'https://prezipresentioserver.herokuapp.com/api/presentation/all';
     return {
       getPresentations: function (pageOffset, pageSize) {
         return $http.get(BASE_URL + '/' + pageOffset + '/' + pageSize);
